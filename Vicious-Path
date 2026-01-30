@@ -1,0 +1,30 @@
+"""
+Created on Fri Jan 30 11:20:17 2026
+
+@author: Iyyad00
+"""
+
+import time
+
+print("--- BILAN DE TRAJECTOIRE QUOTIDIEN ---")
+
+try:
+    code = int(input("Minutes passées à coder : "))
+    sport = int(input("Minutes passées au foot/sport : "))
+    videos = int(input("Minutes perdues (Streaming/Réseaux) : "))
+
+    score = (code + sport) - videos
+    maintenant = time.ctime()
+
+    print(f"\n[{maintenant}] Ton score : {score}")
+
+    # --- LE BLOC DE SAUVEGARDE ---
+    with open("journal.txt", "a") as fichier:
+        # CETTE LIGNE DOIT ÊTRE DÉCALÉE (INDENTÉE)
+        fichier.write(f"{maintenant} - Score : {score}\n")
+    
+    # Une fois qu'on revient ici (au bord), le fichier est fermé.
+    print("\nDonnées sauvegardées avec succès.")
+
+except ValueError:
+    print("\nERREUR : Entre des nombres !")
